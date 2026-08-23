@@ -1,3 +1,5 @@
+# Deprecated and no longer in use!
+
 # captchaSolve
 
 Cloudflare Worker that reads four-digit CAPTCHA images with the multimodal
