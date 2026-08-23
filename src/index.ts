@@ -8,17 +8,18 @@ export default {
 		const blob = await request.arrayBuffer();
 		const input = {
 			image: [...new Uint8Array(blob)],
-			prompt: 'Help me read this 4 digit number. Please only provide the number in the response.',
-			max_tokens: 512
+			prompt: 'Read the four-digit CAPTCHA in this image. Respond with exactly four digits and nothing else.',
+			max_tokens: 8,
+			temperature: 0
 		};
 
 		// Call the AI model with the image and prompt
 		const response = await env.AI.run(
-			'@cf/llava-hf/llava-1.5-7b-hf',
+			'@cf/meta/llama-4-scout-17b-16e-instruct',
 			input
 		);
 
 		// Return the response from the AI model
-		return new Response(response.description.toString().trim());
+		return new Response(response.response.trim());
 	}
 } satisfies ExportedHandler<Env>;
